@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>色彩個性診断</title>
+
+<style>
+body{
+    font-family:
+"Yu Gothic UI",
+"Yu Gothic",
+"Hiragino Sans",
+sans-serif;
+    background:#f7f5f2;
+    margin:0;
+    padding:40px;
+}
+
+.card{
+    max-width:500px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+h1{
+    text-align:center;
+    font-size:42px;
+}
+
+p{
+    text-align:center;
+    color:#666;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    font-size:20px;
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+    letter-spacing:2px;
+    border:none;
+    border-radius:12px;
+    background:#4a4a4a;
+    color:white;
+   
+}
+label{
+    display:block;
+    margin-top:30px;
+    margin-bottom:10px;
+    font-weight:bold;
+}
+
+.row{
+    display:flex;
+    gap:10px;
+    margin-bottom:25px;
+}
+
+select{
+    flex:1;
+    padding:12px;
+    border-radius:10px;
+    font-size:18px;
+}
+.result-card{
+    display:none;
+    margin-top:40px;
+    border-top:1px solid #ddd;
+    padding-top:40px;
+}
+
+.result-small{
+    text-align:center;
+    color:#b89a58;
+    letter-spacing:3px;
+    font-size:13px;
+    font-weight:bold;
+    text-transform:uppercase;
+}
+
+.result-title{
+    text-align:center;
+    font-size:36px;
+    font-weight:300;
+    letter-spacing:4px;
+    margin:15px 0 40px;
+    color:#4a4a4a;
+}
+
+.type-logo{
+    text-align:center;
+    margin-bottom:5px;
+}
+
+.logo-star{
+    color:#b99a52;
+    font-size:24px;
+    margin-bottom:-10px;
+}
+
+.type-mark{
+    font-size:90px;
+    font-family:"Times New Roman", serif;
+    font-style:italic;
+    color:#355246;
+    line-height:1;
+}
+
+.color-type-en{
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+    letter-spacing:3px;
+    margin-top:10px;
+    color:#56745d;
+}
+
+.color-type-ja{
+    text-align:center;
+    font-size:20px;
+    margin-top:8px;
+    margin-bottom:35px;
+}
+
+.message{
+    text-align:center;
+    line-height:2.2;
+    margin-bottom:35px;
+}
+
+.subtype{
+    text-align:center;
+    font-size:26px;
+    font-weight:bold;
+    color:#56745d;
+}
+
+.subtype-ja{
+    text-align:center;
+    font-size:18px;
+    margin:8px 0 30px;
+}
+
+.point-title{
+    text-align:center;
+    font-weight:bold;
+    margin-bottom:15px;
+    color:#56745d;
+}
+
+.point-text{
+    text-align:center;
+    line-height:2;
+    color:#555;
+}
+
+.lab{
+    margin-top:45px;
+    text-align:center;
+    font-size:14px;
+    color:#666;
+    line-height:1.8;
+}
+.line{
+    border:none;
+    border-top:1px solid #d8d8d8;
+    width:70%;
+    margin:35px auto;
+}
+.type-box{
+    margin-top:45px;
+    padding:35px 22px;
+    border:1px solid #d8ddd8;
+    border-radius:18px;
+    position:relative;
+}
+
+.type-label{
+    display:block;
+    width:max-content;
+    margin:-52px auto 25px;
+    background:#2F2F2F;
+    color:white;
+    padding:8px 32px;
+    border-radius:6px;
+    font-size:14px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.type-name{
+    text-align:center;
+    font-size:32px;
+    letter-spacing:6px;
+    color:#222;
+    margin-bottom:6px;
+}
+
+.type-name-en{
+    text-align:center;
+    font-family:"Times New Roman", serif;
+    font-style:italic;
+    font-size:28px;
+    color:#355246;
+    margin-bottom:25px;
+}
+
+.type-content{
+    display:flex;
+    gap:32px;
+    align-items:flex-start;
+    justify-content:center;
+    margin-bottom:35px;
+}
+.type-image{
+    width:100%;
+    margin:20px 0;
+    border-radius:0;
+    overflow:hidden;
+    box-shadow:none;
+    background:none;
+}
+.type-image img{
+    width:100%;
+    height:auto;
+    display:block;
+}
+.type-description{
+    text-align:left;
+    line-height:2;
+    color:#444;
+    font-size:15px;
+    margin-bottom35px;
+}
+
+.point-heading{
+    text-align:center;
+    color:#355246;
+    font-weight:bold;
+    margin:25px 0 14px;
+    letter-spacing:1px;
+}
+
+.point-box{
+    border:1px solid #d8ddd8;
+    border-radius:16px;
+    padding:18px 20px;
+    line-height:2;
+    color:#333;
+    font-size:14px;
+    background:#fbfaf7;
+    margin-bottom:40px;
+}
+.artbook-result {
+  display: none;
+  background: #fbfaf7;
+  color: #2f2750;
+  box-shadow: none;
+  border: none;
+  padding: 0;
+  max-width: none;
+}
+
+.artbook-result section {
+  min-height: 55vh;
+  padding: 40px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.type-mark {
+  font-family: Georgia, serif;
+  font-size: 96px;
+  color: #3b246b;
+  line-height: 1;
+}
+
+.color-type-en {
+  font-family: Georgia, serif;
+  letter-spacing: 0.28em;
+  font-size: 18px;
+  margin-top: 18px;
+}
+
+.message {
+  margin-top: 36px;
+  font-size: 18px;
+  line-height: 2.2;
+  letter-spacing: 0.08em;
+}
+
+.visual-title {
+  position: absolute;
+  inset: 0;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-shadow: 0 2px 18px rgba(0,0,0,0.35);
+}
+
+#typeNameEn {
+  font-family: Georgia, serif;
+  font-size: 60px;
+}
+
+#typeName {
+  font-size: 20px;
+  letter-spacing: 0.18em;
+  margin-top: 10px;
+}
+
+.type-description,
+.point-box,
+.closing-section p {
+  font-size: 18px;
+  line-height: 2.3;
+  letter-spacing: 0.08em;
+}
+
+.point-section h2 {
+  font-weight: normal;
+  font-size: 28px;
+  letter-spacing: 0.16em;
+}
+
+.lab {
+  margin-top: 40px;
+  font-family: Georgia, serif;
+  font-size: 16px;
+}
+@media (max-width: 600px) {
+  body {
+    padding: 0;
+  }
+
+  .artbook-result section {
+    min-height: auto;
+    padding: 64px 22px;
+  }
+
+  .type-mark {
+    font-size: 72px;
+  }
+
+  .color-type-en {
+    font-size: 13px;
+    letter-spacing: 0.22em;
+  }
+
+  .color-type-ja {
+    font-size: 14px;
+    margin-top: 10px;
+    letter-spacing: 0.12em;
+  }
+
+  .message,
+  .type-description,
+  .point-box,
+  .closing-section p {
+    font-size: 18px;
+    line-height: 2.2;
+  }
+
+  .visual-section {
+    padding: 0;
+  }
+
+.visual-section img {
+  width: 100%;
+  height: 62vh;
+  object-fit: cover;
+  display: block;
+}
+  #typeNameEn {
+    font-size: 44px;
+  }
+
+  #typeName {
+    font-size: 16px;
+  }
+
+  .lab {
+    font-size: 14px;
+  }
+}
+body {
+  font-family: "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+}
+
+.type-description,
+.point-box,
+.closing-section p,
+.message {
+  text-align: center;
+  font-family: "Times New Roman", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 20px;
+  line-height: 2.3;
+}
+.point-box {
+  border: none;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+}
+.visual-section {
+  padding: 0;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.visual-section img {
+  width: 100vw;
+  height: 78vh;
+  object-fit: cover;
+}
+.visual-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.visual-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+}
+html, body {
+  overflow-x: hidden;
+}
+.visual-section {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  margin: 0 auto;
+}
+.visual-section img {
+    width:100%;
+    height:60vh;
+    object-fit:cover;
+    display:block;
+    margin-bottom:10px;
+}
+.artbook-result .visual-section {
+  padding-left: 0;
+  padding-right: 0;
+}
+.point-section {
+  min-height: 45vh;
+  padding: 30px 20px;
+}
+
+.closing-section {
+  min-height: 50vh;
+  padding: 35px 20px 60px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>色彩個性診断</h1>
+
+<p>本質タイプ判定ツール</p>
+<label>生年月日</label>
+
+<div class="row">
+  <select id="year"> </select>
+
+  <select id="month"></select>
+
+  <select id="day"> </select>
+</div>
+<button onclick="hello()">判定する</button>
+<div id="resultCard" class="result-card artbook-result">
+
+  <section class="result-hero">
+    <div class="logo-star">✦</div>
+    <div class="type-mark" id="typeMark">S</div>
+    <div class="color-type-en" id="colorTypeEn">SOLID COLOR</div>
+    <div class="color-type-ja" id="colorTypeJa">ソリッドカラー</div>
+    <div class="message" id="mainMessage">
+      主人公は、一人ひとり。<br>
+      だから、<br>
+      一人ひとりを大切に見る。
+    </div>
+  </section>
+
+  <section class="visual-section">
+    <img id="typeImage" src="images/polaris.png" alt="ポラリス">
+    <div class="visual-title">
+      <div id="typeNameEn">Polaris</div>
+      <div id="typeName">ポラリス</div>
+    </div>
+  </section>
+
+  <section class="text-section">
+    <div id="typeDescription" class="type-description">
+      北極星のように、<br>
+      自分だけの光を持ち、<br>
+      まっすぐに進むタイプ。<br>
+      揺るがない信念で、<br>
+      自分の道を照らします。
+    </div>
+  </section>
+
+  <section class="point-section">
+    
+    <div id="typePoint" class="point-box">
+      ✦ 自分が納得できることを大切にする<br>
+      ✦ 一人でもぶれずに進める強さがある<br>
+      ✦ 周りに流されず、自分のペースを守る
+    </div>
+  </section>
+
+  <section class="closing-section">
+    <p>
+      あなたの個性は、<br>
+      あなただけの輝きです。<br>
+      その光を信じて、<br>
+      これからも進んでいきましょう。
+    </p>
+    
+  </section>
+
+</div>
+  <div class="lab">
+    Color Personality Lab<br>
+    色彩個性研究所
+  </div>
+</div>
+</div>
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
