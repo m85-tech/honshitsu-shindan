@@ -464,15 +464,33 @@ html, body {
   padding: 35px 20px 60px;
 }
 @media (max-width: 600px) {
-  body {
-    margin: 0;
-    padding: 0;
-  }
+    html, body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
 
-  .artbook-result {
-    width: 100vw;
-    max-width: 100vw;
-  }
+    .artbook-result {
+        width: 100%;
+        max-width: none;
+    }
+
+    .artbook-result section {
+        min-height: auto;
+        padding: 64px 22px;
+    }
+
+    .type-mark {
+        font-size: 72px;
+    }
+
+    .color-type-en {
+        font-size: 26px;
+    }
+
+    .color-type-ja {
+        font-size: 18px;
+    }
 }
 html, body {
     overflow-x: hidden;
