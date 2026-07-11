@@ -49,6 +49,7 @@ function hello(){
     if(data){
         document.getElementById("typeName").innerHTML = data.name;
         document.getElementById("typeNameEn").innerHTML = data.en;
+        document.getElementById("typeNameEnText").innerHTML = data.en;
         document.getElementById("typeImage").src = data.image;
         document.getElementById("typeDescription").innerHTML =
             data.description.replace(/\n/g, "<br>");
