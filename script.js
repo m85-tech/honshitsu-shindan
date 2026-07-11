@@ -60,7 +60,7 @@ function hello(){
         .join("");
 
         if(typeNo >= 3 && typeNo <= 6){
-            document.getElementById("colorTypeEn").innerHTML = "SOLID COLOR";
+            document.getElementById("colorTypeEn").innerHTML = "Solid Color";
             document.getElementById("typeSymbol").src = "images/solid-symbol.png";
             document.getElementById("colorTypeJa").innerHTML = "ソリッドカラータイプ";
             document.getElementById("mainMessage").innerHTML =
@@ -68,7 +68,7 @@ function hello(){
             document.getElementById("colorTypeEn").style.color = "#4B2E83";
             document.getElementById("colorTypeJa").style.color = "#6B5A8E";       
         } else if(typeNo >= 7 && typeNo <= 10){
-            document.getElementById("colorTypeEn").innerHTML = "BLEND COLOR";
+            document.getElementById("colorTypeEn").innerHTML = "Blend Color";
             document.getElementById("typeSymbol").src = "images/blend-symbol.png";
             document.getElementById("colorTypeJa").innerHTML = "ブレンドカラータイプ";
             document.getElementById("mainMessage").innerHTML =
@@ -76,7 +76,7 @@ function hello(){
             document.getElementById("colorTypeEn").style.color = "#7A2E45";
             document.getElementById("colorTypeJa").style.color = "#8A5A68";   
         } else if(typeNo >= 11 && typeNo <= 14){
-            document.getElementById("colorTypeEn").innerHTML = "RAINBOW COLOR";
+            document.getElementById("colorTypeEn").innerHTML = "Rainbow Color";
             document.getElementById("typeSymbol").src = "images/rainbow-symbol.png";
             document.getElementById("colorTypeJa").innerHTML = "レインボーカラータイプ";
             document.getElementById("mainMessage").innerHTML =
