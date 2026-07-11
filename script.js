@@ -52,8 +52,12 @@ function hello(){
         document.getElementById("typeImage").src = data.image;
         document.getElementById("typeDescription").innerHTML =
             data.description.replace(/\n/g, "<br>");
-        document.getElementById("typePoint").innerHTML =
-            data.point.replace(/\n/g, "<br>");
+       document.getElementById("typePoint").innerHTML =
+    data.point
+        .trim()
+        .split("\n")
+        .map(line => `<div>${line.trim()}</div>`)
+        .join("");
 
         if(typeNo >= 3 && typeNo <= 6){
             document.getElementById("colorTypeEn").innerHTML = "SOLID COLOR";
