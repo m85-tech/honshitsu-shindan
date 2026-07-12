@@ -64,6 +64,10 @@ function hello(){
             document.getElementById("colorTypeEn").innerHTML = "Solid Color";
             document.getElementById("typeSymbol").src = "images/solid-symbol.png";
             document.getElementById("colorTypeJa").innerHTML = "ソリッドカラータイプ";
+            document.querySelector(".result-hero").style.backgroundImage =
+'url("images/solid-watercolor-bg.png")';
+document.querySelector(".closing-section").style.backgroundImage =
+'url("images/solid-watercolor-bg.png")';
             document.getElementById("mainMessage").innerHTML =
                 "主人公は、一人ひとり。<br>だから、<br>一人ひとりを大切に見る。";
             document.getElementById("colorTypeEn").style.color = "#4B2E83";
@@ -72,6 +76,9 @@ function hello(){
             document.getElementById("colorTypeEn").innerHTML = "Blend Color";
             document.getElementById("typeSymbol").src = "images/blend-symbol.png";
             document.getElementById("colorTypeJa").innerHTML = "ブレンドカラータイプ";
+            document.querySelector(".result-hero").style.backgroundImage =
+'url("images/blend-watercolor-bg.png")';
+document.querySelector(".closing-section").style.backgroundImage = 'url("images/blend-watercolor-bg.png")';
             document.getElementById("mainMessage").innerHTML =
                 "主人公は、私と大切な人。<br>だから、<br>人と人との関係を見る。";
             document.getElementById("colorTypeEn").style.color = "#7A2E45";
@@ -80,6 +87,10 @@ function hello(){
             document.getElementById("colorTypeEn").innerHTML = "Rainbow Color";
             document.getElementById("typeSymbol").src = "images/rainbow-symbol.png";
             document.getElementById("colorTypeJa").innerHTML = "レインボーカラータイプ";
+            document.querySelector(".result-hero").style.backgroundImage =
+'url("images/rainbow-watercolor-bg.png")';
+document.querySelector(".closing-section").style.backgroundImage =
+'url("images/rainbow-watercolor-bg.png")';
             document.getElementById("mainMessage").innerHTML =
                 "主人公は、世界の中の私。<br>だから、<br>世界全体を見る。";
             document.getElementById("colorTypeEn").style.color = "#C8A24A";

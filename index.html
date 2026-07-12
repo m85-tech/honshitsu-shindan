@@ -72,8 +72,28 @@ select{
     margin-top:40px;
     border-top:1px solid #ddd;
     padding-top:40px;
+   background-repeat: no-repeat;
+background-position: top center;
+background-size: 100% auto;
+}
+.result-card .result-hero,
+.result-card .text-section,
+.result-card .point-section,
+.result-card .closing-section {
+    background-color: transparent !important;
+    background-repeat: no-repeat !important;
 }
 
+.result-card .result-hero {
+    background-position: left top !important;
+    background-size: auto 100% !important;
+}
+
+.result-card .closing-section {
+    background-position: right bottom !important;
+    background-size: auto 115% !important;
+}
+ 
 .result-small{
     text-align:center;
     color:#b89a58;
@@ -280,8 +300,38 @@ justify-content: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
+}
+.artbook-result .closing-section {
+    background-repeat: no-repeat !important;
+    background-position: right bottom !important;
+    background-size: auto 115% !important;
+}
+.artbook-result .closing-section {
+    position: relative;
 }
 
+.artbook-result .closing-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(
+        to bottom,
+        #fbfaf7 0%,
+        #fbfaf7 45%,
+        rgba(251, 250, 247, 0) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+.artbook-result .closing-section p {
+    position: relative;
+    z-index: 2;
+}
 .type-mark {
   font-family: Georgia, serif;
   font-size: 96px;
@@ -483,7 +533,7 @@ html, body {
 }
 
 .closing-section {
-  min-height: 50vh;
+  min-height: 80vh;
   padding: 35px 20px 60px;
 }
 @media (max-width: 600px) {
@@ -549,6 +599,7 @@ html, body {
     gap:14px;
     margin-bottom:16px;
 }
+
 </style>
 
 </head>
