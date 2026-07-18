@@ -1,35 +1,164 @@
 const ACCESS_PASSWORD = "CPL2026QN";
 
 if (sessionStorage.getItem("cplAuthorized") !== "yes") {
-    const enteredPassword = window.prompt(
-        "認定講師専用ページです。\nパスワードを入力してください。"
-    );
+    document.body.style.overflow = "hidden";
 
-    if (enteredPassword === ACCESS_PASSWORD) {
-        sessionStorage.setItem("cplAuthorized", "yes");
-    } else {
-        document.body.innerHTML = `
-            <div style="
-                min-height:100vh;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                text-align:center;
-                padding:30px;
-                font-family:serif;
-                color:#444;
-                background:#fbfaf7;
-            ">
-                <div>
-                    <h2 style="font-weight:normal;">認定講師専用ページ</h2>
-                    <p>パスワードが正しくありません。</p>
-                    <p>ページを閉じてください。</p>
-                </div>
+    const loginScreen = document.createElement("div");
+    loginScreen.id = "loginScreen";
+
+    loginScreen.innerHTML = `
+        <div class="login-card">
+            <div class="login-brand">
+                <span>Color</span>
+                <span>Personality</span>
+                <span>Lab</span>
             </div>
-        `;
 
-        throw new Error("Access denied");
+            <div class="login-line"></div>
+
+            <p class="login-label">認定講師専用ページ</p>
+
+            <input
+                id="passwordInput"
+                type="password"
+                placeholder="パスワード"
+                autocomplete="current-password"
+            >
+
+            <button id="loginButton" type="button">
+                ログイン
+            </button>
+
+            <p id="loginError"></p>
+        </div>
+    `;
+
+    const loginStyle = document.createElement("style");
+
+    loginStyle.textContent = `
+        #loginScreen {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background:
+                radial-gradient(circle at top left, rgba(170, 184, 198, 0.30), transparent 42%),
+                linear-gradient(145deg, #f7f5f0, #e9edf0);
+            font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+        }
+
+        .login-card {
+            width: min(390px, 100%);
+            padding: 54px 38px 44px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(80, 88, 96, 0.14);
+            border-radius: 28px;
+            box-shadow: 0 24px 60px rgba(48, 55, 62, 0.15);
+        }
+
+        .login-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: fit-content;
+            margin: 0 auto;
+            color: #3f454b;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 36px;
+            line-height: 1.02;
+            letter-spacing: 0.02em;
+        }
+
+        .login-line {
+            width: 44px;
+            height: 1px;
+            margin: 28px auto;
+            background: #8a9299;
+        }
+
+        .login-label {
+            margin: 0 0 26px;
+            color: #6c7278;
+            font-size: 15px;
+            letter-spacing: 0.18em;
+        }
+
+        #passwordInput {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 15px 16px;
+            border: 1px solid #c9ced2;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #363b40;
+            font-size: 16px;
+            outline: none;
+        }
+
+        #passwordInput:focus {
+            border-color: #7c8790;
+            box-shadow: 0 0 0 3px rgba(124, 135, 144, 0.12);
+        }
+
+        #loginButton {
+            width: 100%;
+            margin-top: 18px;
+            padding: 15px;
+            border: 0;
+            border-radius: 10px;
+            background: #4b535b;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 16px;
+            letter-spacing: 0.14em;
+            cursor: pointer;
+        }
+
+        #loginButton:hover {
+            background: #373e44;
+        }
+
+        #loginError {
+            min-height: 22px;
+            margin: 15px 0 0;
+            color: #9b4b4b;
+            font-size: 14px;
+        }
+    `;
+
+    document.head.appendChild(loginStyle);
+    document.body.appendChild(loginScreen);
+
+    const passwordInput = document.getElementById("passwordInput");
+    const loginButton = document.getElementById("loginButton");
+    const loginError = document.getElementById("loginError");
+
+    function checkPassword() {
+        if (passwordInput.value === ACCESS_PASSWORD) {
+            sessionStorage.setItem("cplAuthorized", "yes");
+            loginScreen.remove();
+            loginStyle.remove();
+            document.body.style.overflow = "";
+        } else {
+            loginError.textContent = "パスワードが違います。";
+            passwordInput.value = "";
+            passwordInput.focus();
+        }
     }
+
+    loginButton.addEventListener("click", checkPassword);
+
+    passwordInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            checkPassword();
+        }
+    });
+
+    passwordInput.focus();
 }
 const yearSelect = document.getElementById("year");
 const monthSelect = document.getElementById("month");
