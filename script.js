@@ -1,3 +1,36 @@
+const ACCESS_PASSWORD = "CPL2026QN";
+
+if (sessionStorage.getItem("cplAuthorized") !== "yes") {
+    const enteredPassword = window.prompt(
+        "認定講師専用ページです。\nパスワードを入力してください。"
+    );
+
+    if (enteredPassword === ACCESS_PASSWORD) {
+        sessionStorage.setItem("cplAuthorized", "yes");
+    } else {
+        document.body.innerHTML = `
+            <div style="
+                min-height:100vh;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                text-align:center;
+                padding:30px;
+                font-family:serif;
+                color:#444;
+                background:#fbfaf7;
+            ">
+                <div>
+                    <h2 style="font-weight:normal;">認定講師専用ページ</h2>
+                    <p>パスワードが正しくありません。</p>
+                    <p>ページを閉じてください。</p>
+                </div>
+            </div>
+        `;
+
+        throw new Error("Access denied");
+    }
+}
 const yearSelect = document.getElementById("year");
 const monthSelect = document.getElementById("month");
 const daySelect = document.getElementById("day");
